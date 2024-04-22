@@ -1,13 +1,10 @@
-/*リスト 5.6:Bootstrap CSSを追加する */
+/*リスト 5.19:ネストや変数を使って初期のSCSSファイルを書き直した結果*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*演習5.1.2の2：画像が表示されない設定*/
-img {
-  // display: none;
-}
+/* mixins, variables, etc. */
+$gray-medium-light: #eaeaea;
 
-/*リスト 5.7:すべてのページに適用される共通のスタイルをCSSに追加する*/
 /* universal */
 body {
   padding-top: 60px;
@@ -23,15 +20,13 @@ textarea {
 
 .center {
   text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
 }
 
-.center h1 {
-  margin-bottom: 10px;
-}
-
-
-/* リスト 5.8:洗練されたタイポグラフィーを利用するためのCSSを追加する */
 /* typography */
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -49,7 +44,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  color: $gray-light;
 }
 
 p {
@@ -57,34 +52,45 @@ p {
   line-height: 1.7em;
 }
 
-/* リスト 5.16:サイトにfooter用CSSを追加する */
-/* footer */
 
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* footer */
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-}
-
-footer a {
-  color: #555;
-}
-
-footer a:hover {
-  color: #222;
-}
-
-footer small {
-  float: left;
-}
-
-footer ul {
-  float: right;
-  list-style: none;
-}
-
-footer ul li {
-  float: left;
-  margin-left: 15px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
 }
