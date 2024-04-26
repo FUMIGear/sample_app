@@ -20,6 +20,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get help" do
+    # get helf_path # リスト5.27
     get help_path # リスト5.27
     # get static_pages_help_url
     assert_response :success
