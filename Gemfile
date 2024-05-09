@@ -15,6 +15,8 @@ gem "bootsnap",        "1.16.0", require: false
 gem "sqlite3",         "1.6.1"
 gem "rails",           "7.0.4.3"
 gem "bootstrap-sass",  "3.4.1" #追加
+gem "bcrypt",          "3.1.18"
+
 
 
 group :development, :test do
