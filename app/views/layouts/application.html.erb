@@ -12,6 +12,7 @@
       <!--リスト 7.29:flash変数の内容をWebサイトのレイアウトに追加する-->
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> <!--演習7.4.4-2-->
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
