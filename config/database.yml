@@ -20,6 +20,13 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# リスト 7.38:データベースを本番向けに設定する
+# config/database.yml
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV['DATABASE_URL'] %>
