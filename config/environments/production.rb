@@ -95,4 +95,5 @@ Rails.application.configure do
   # and use secure cookies.
   # リスト7.35
   config.force_ssl = false
+  # config.force_ssl = true
 end
