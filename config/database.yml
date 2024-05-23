@@ -28,5 +28,8 @@ test:
 production:
   <<: *default
   adapter: postgresql
+  host: db
+  username: sample_postgresql_iboy_user
+  password: yzf2mSIXJacgcglH4LSNiLJQXPyheo3P
   encoding: unicode
   url: <%= ENV['DATABASE_URL'] %>
