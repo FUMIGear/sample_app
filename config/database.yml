@@ -29,7 +29,9 @@ production:
   <<: *default
   adapter: postgresql
   host: db
+  database: sample_postgresql_iboy
   username: sample_postgresql_iboy_user
   password: yzf2mSIXJacgcglH4LSNiLJQXPyheo3P
   encoding: unicode
+  host: dpg-cp7grknsc6pc73a9l9e0-a
   url: <%= ENV['DATABASE_URL'] %>
