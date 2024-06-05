@@ -28,11 +28,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    assert is_logged_in? # リスト 8.41:ユーザー登録後のログインのテスト
     # リスト 7.32:flashをテストするためのテンプレート
-    assert_not flash.nil? # これでいいのか演習7.4.4
+    # assert_not flash.nil? # これでいいのか演習7.4.4
     # assert_not flash.（コードを書き込む）
     # flash.now[:success]でValueが取れる
     # flash.nil?でnilかどうか判断できる
+
   end
 
 

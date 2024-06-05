@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params) #リスト7.19
     if @user.save
     # if false # 演習7.7.4-4
+      reset_session # リスト 8.39
+      log_in @user # リスト 8.39
       flash[:success] = "Welcome to the Sample App!" #リスト7.27：ここで好きなキーとメッセージ入れてる
       redirect_to @user # リスト7.26
       # redirect_to user_url(@user) # 演習7.4.1結果同じはず

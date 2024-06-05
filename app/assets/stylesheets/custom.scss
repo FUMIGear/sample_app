@@ -77,6 +77,12 @@ p {
   }
 }
 
+/* Dropdown menu */
+// リスト 8.22:ドロップダウンメニューを有効にするCSS
+.dropdown-menu.active {
+  display: block;
+}
+
 /* footer */
 footer {
   margin-top: 45px;
@@ -98,6 +104,25 @@ footer {
     li {
       float: left;
       margin-left: 15px;
+    }
+  }
+}
+// リスト 8.30:フッターのCSSを更新する
+/* footer */
+@media (max-width: 800px) {
+  footer {
+    small {
+      display: block;
+      float: none;
+      margin-bottom: 1em;
+    }
+    ul {
+      float: none;
+      padding: 0;
+      li {
+        float: none;
+        margin-left: 0;
+      }
     }
   }
 }
