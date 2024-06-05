@@ -22,7 +22,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  # リスト 8.44:セッションを破棄する（ユーザーのログアウト） 
   def destroy
+    log_out
+    redirect_to root_url, status: :see_other
   end
 
 
