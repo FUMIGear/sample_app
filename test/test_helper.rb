@@ -17,4 +17,18 @@ class ActiveSupport::TestCase
   def is_logged_in?
     !session[:user_id].nil?
   end
+
+  # リスト 9.25:log_in_asヘルパーを追加する
+  # テストユーザーとしてログインする
+  def log_in_as(user)
+    session[:user_id] = user.id
+  end
+end
+
+# リスト 9.25:log_in_asヘルパーを追加する
+class ActionDispatch::IntegrationTest
+  # テストユーザーとしてログインする
+  def log_in_as(user, password: 'password', remember_me: '1')
+    post login_path, params: { session: { email: user.email, password: password, remember_me: remember_me } }
+  end
 end
