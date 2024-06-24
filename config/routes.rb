@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # # root "application#hello" # リスト3.5：デプロイするため
   # root "static_pages#home" # リスト3.42
 
-# リスト 5.26:静的なページのルーティング一覧
+  # リスト 5.26:静的なページのルーティング一覧
   root "static_pages#home"
   get  "/help",    to: "static_pages#help"
   # get  "/help",    to: "static_pages#help", as: 'helf'

@@ -27,6 +27,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # リスト 10.1:ユーザーのeditアクション
+  def edit
+    @user = User.find(params[:id])
+  end
+
   private
 
   # リスト 7.19:createアクションでStrong Parametersを使う
