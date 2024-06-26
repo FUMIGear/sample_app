@@ -32,6 +32,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # リスト 10.8:ユーザーのupdateアクションの初期実装
+  # リスト 10.12:ユーザーのupdateアクション
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "Profile updated" # リスト10.12
+      redirect_to @user # リスト10.12
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end
+
   private
 
   # リスト 7.19:createアクションでStrong Parametersを使う

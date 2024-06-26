@@ -14,8 +14,11 @@ class User < ApplicationRecord
   format: { with: VALID_EMAIL_REGEX }, #リスト6.21
   uniqueness: true
   # uniqueness: { case_sensitive: false } #リスト6.27
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  has_secure_password # これのお陰でアカウント生成でパスワードが空欄でも止めてくれる。
+  # リスト 10.13:パスワードが空のままでも更新できるようにする green
+  # validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
 
   # 元コード
   # 渡された文字列のハッシュ値を返す
@@ -61,7 +64,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
     remember_digest # リスト9.37追加分
   end
-  
+
   # リスト 9.37:session_tokenメソッドをユーザーに追加する
   # セッションハイジャック防止のためにセッショントークンを返す
   # この記憶ダイジェストを再利用しているのは単に利便性のため
