@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    debugger # 演習10.2.3
   end
 
   # リスト 8.6:Sessionsコントローラのcreateアクション（暫定版）
@@ -8,10 +9,13 @@ class SessionsController < ApplicationController
     # リスト 9.29:createアクション内でインスタンス変数を使うためのテンプレート
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
+      forwarding_url = session[:forwarding_url] # リスト10.33
+      # debugger
       reset_session
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       log_in @user
-      redirect_to @user
+      # redirect_to @user
+      redirect_to forwarding_url || @user # リスト10.33
       # user = User.find_by(email: params[:session][:email].downcase)
       # if user && user.authenticate(params[:session][:password])
       # if user # && user.authenticate(params[:session][:password]) # リスト8.36

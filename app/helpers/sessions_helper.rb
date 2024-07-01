@@ -2,7 +2,9 @@ module SessionsHelper
   # リスト8.14:渡されたユーザーでログインする
   def log_in(user)
     session[:user_id] = user.id
-    session[:session_token] = user.session_token # リスト 9.38
+    # セッションリプレイ攻撃から保護する
+    # 詳しくは https://techracho.bpsinc.jp/hachi8833/2023_06_02/130443 を参照
+    session[:session_token] = user.session_token # リスト 9.38 # リスト10.27
   end
 
   # リスト 9.8:ユーザーを記憶する
@@ -24,6 +26,7 @@ module SessionsHelper
   # リスト 9.9:永続的セッションのcurrent_userを更新する
   # リスト 9.31:テストされていないブランチで例外を発生する
   # リスト 9.38:ログイン時にセッショントークンを設定する
+  # リスト 10.27
   # 記憶トークンcookieに対応するユーザーを返す
   def current_user
     if (user_id = session[:user_id])
@@ -65,5 +68,18 @@ module SessionsHelper
     forget(current_user) # リスト9.12追加分
     reset_session
     @current_user = nil   # 安全のため
+  end
+
+  # リスト 10.27:current_user?メソッド
+  # 渡されたユーザーがカレントユーザーであればtrueを返す
+  def current_user?(user)
+    user && user == current_user
+  end
+
+  # リスト 10.31:転送先URLを保存するコード red
+  # アクセスしようとしたURLを保存する
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+    # debugger
   end
 end
