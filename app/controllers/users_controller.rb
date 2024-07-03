@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update] # リスト10.15, 10.36
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy] # リスト10.15, 10.36、10.59
   before_action :correct_user,   only: [:edit, :update] # リスト10.25
+  before_action :admin_user,     only: :destroy # リスト10.60
 
   # リスト 10.36:indexアクションにはログインを要求する green
   def index
@@ -53,6 +54,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # リスト 10.59:実際に動作するdestroyアクションを追加する
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url, status: :see_other
+  end
+
   private
 
   # リスト 7.19:createアクションでStrong Parametersを使う
@@ -76,5 +84,11 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url, status: :see_other) unless @user == current_user
+  end
+
+  # リスト 10.60:beforeフィルターでdestroyアクションを管理者だけに限定する
+  # 管理者かどうか確認
+  def admin_user
+    redirect_to(root_url, status: :see_other) unless current_user.admin?
   end
 end
