@@ -16,7 +16,9 @@ gem "sqlite3",         "1.6.1"
 gem "rails",           "7.0.4.3"
 gem "bootstrap-sass",  "3.4.1" #追加
 gem "bcrypt",          "3.1.18"
-
+gem "faker",           "2.21.0" # リスト10.43
+gem "will_paginate",           "3.3.1" # リスト 10.45
+gem "bootstrap-will_paginate", "1.0.0" # リスト 10.45
 
 
 group :development, :test do

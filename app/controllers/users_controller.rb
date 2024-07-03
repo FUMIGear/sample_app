@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update] # リスト10.15
+  before_action :logged_in_user, only: [:index, :edit, :update] # リスト10.15, 10.36
   before_action :correct_user,   only: [:edit, :update] # リスト10.25
+
+  # リスト 10.36:indexアクションにはログインを要求する green
+  def index
+    # @users = User.all
+    @users = User.paginate(page: params[:page]) # リスト10.37
+  end
 
   # リスト7.5
   def show

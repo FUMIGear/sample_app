@@ -170,6 +170,18 @@ aside {
   margin-top: 15px;
 }
 
+/* Users index */
+// リスト 10.40:ユーザーのindexページ用のCSS
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
 /* forms */
 /*リスト7.16*/
 input, textarea {

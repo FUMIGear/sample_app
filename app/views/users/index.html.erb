@@ -1,0 +1,12 @@
+<%# リスト 10.38:ユーザーのindexビュー%>
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= will_paginate %> <%#リスト10.46%>
+
+<!--リスト 10.51:indexビューに対する最初のリファクタリング red-->
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate %> <%#リスト10.46%>

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    debugger # 演習10.2.3
+    # debugger # 演習10.2.3
   end
 
   # リスト 8.6:Sessionsコントローラのcreateアクション（暫定版）
