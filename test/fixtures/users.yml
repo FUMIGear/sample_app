@@ -1,33 +1,45 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# リスト 10.61:fixture内の最初のユーザーを管理者にする
 # リスト 8.33:ユーザーログインのテストで使うfixture
+# リスト 10.23:fixtureファイルに2人目のユーザーを追加する
+# リスト 10.61:fixture内の最初のユーザーを管理者にする
+# リスト 11.5:fixtureのユーザーを有効にしておく
 michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
   admin: true
+  activated: true # リスト 11.5
+  activated_at: <%= Time.zone.now %> # リスト 11.5
 
-# リスト 10.23:fixtureファイルに2人目のユーザーを追加する
 archer:
   name: Sterling Archer
   email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
+  activated: true # リスト 11.5
+  activated_at: <%= Time.zone.now %> # リスト 11.5
 
-# リスト 10.48:fixtureにさらに30人のユーザーを追加する
 lana:
   name: Lana Kane
   email: hands@example.gov
   password_digest: <%= User.digest('password') %>
+  activated: true # リスト 11.5
+  activated_at: <%= Time.zone.now %># リスト 11.5
+
 
 malory:
   name: Malory Archer
   email: boss@example.gov
   password_digest: <%= User.digest('password') %>
+  activated: true # リスト 11.5
+  activated_at: <%= Time.zone.now %> # リスト 11.5
 
+# リスト 10.48:fixtureにさらに30人のユーザーを追加する
 <% 30.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
+  activated: true # リスト 11.5
+  activated_at: <%= Time.zone.now %> # リスト 11.5
 <% end %>

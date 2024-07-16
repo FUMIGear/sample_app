@@ -1,7 +1,10 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token # リスト9.3
+  attr_accessor :remember_token, :activation_token # リスト9.3 リスト11.3
   # before_save { self.email = email.downcase }
-  before_save { email.downcase! }
+  # before_save { email.downcase! }
+  before_save   :downcase_email # リスト11.3
+  before_create :create_activation_digest # リスト11.3
+
   #リスト6.9name属性の存在性を検証する
   # validates :name, presence: true
   # リスト 6.12:email属性の存在性を検証する
@@ -85,4 +88,18 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  private # リスト11.3
+    # リスト 11.3:Userモデルにアカウント有効化のコードを追加する green
+    # 上のbeforアクションの処理をここで行っている。
+    # メールアドレスをすべて小文字にする
+    def downcase_email
+      # self.email = email.downcase
+      self.email.downcase! # 演習11.1.2
+    end
+    # 有効化トークンとダイジェストを作成および代入する
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end
