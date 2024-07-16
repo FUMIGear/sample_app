@@ -1,4 +1,7 @@
 require "active_support/core_ext/integer/time"
+Rails.application.configure do
+
+end
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -36,8 +39,16 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # リスト 11.16:development環境のメール設定
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  # host = 'example.com' # ここをコピペすると失敗します。自分の環境のホストに変えてください。
+  host = '127.0.0.1:3000/' # ローカルはこれか？
+  # host = 'localhost:3000'  # ローカル環境
+  # クラウドIDEの場合は以下をお使いください
+  # config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  # localhostはhttpなので、下記を使う。
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
 
   config.action_mailer.perform_caching = false
 
