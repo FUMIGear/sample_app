@@ -27,8 +27,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "password" } }
     end
     follow_redirect!
-    assert_template 'users/show'
-    assert is_logged_in? # リスト 8.41:ユーザー登録後のログインのテスト
+    # リスト 11.24:失敗するテストを一時的にコメントアウトする green
+    # assert_template 'users/show' # リスト11.24
+    # assert is_logged_in? # リスト 8.41:ユーザー登録後のログインのテスト # リスト11.24
+
     # リスト 7.32:flashをテストするためのテンプレート
     # assert_not flash.nil? # これでいいのか演習7.4.4
     # assert_not flash.（コードを書き込む）
@@ -36,8 +38,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # flash.nil?でnilかどうか判断できる
 
   end
-
-
   #test/integration/users_signup_test.rb
   # test "valid signup information" do
   #   assert_difference 'User.count', 1 do
@@ -49,6 +49,5 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   #   follow_redirect!
   #   assert_template 'users/show'
   #   # assert_not flash.（コードを書き込む）
-
   # end
 end

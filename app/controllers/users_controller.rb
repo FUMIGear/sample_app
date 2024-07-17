@@ -26,11 +26,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params) #リスト7.19
     if @user.save
     # if false # 演習7.7.4-4
-      reset_session # リスト 8.39
-      log_in @user # リスト 8.39
-      flash[:success] = "Welcome to the Sample App!" #リスト7.27：ここで好きなキーとメッセージ入れてる
-      redirect_to @user # リスト7.26
-      # redirect_to user_url(@user) # 演習7.4.1結果同じはず
+      # reset_session # リスト 8.39
+      # log_in @user # リスト 8.39
+      # flash[:success] = "Welcome to the Sample App!" #リスト7.27：ここでキーに好きなメッセージ入れてる
+      # redirect_to @user # リスト7.26
+      # redirect_to user_url(@user) # 演習7.4.1＝リスト7.26と同じ結果
+      
+      # リスト 11.23:ユーザー登録にアカウント有効化を追加する red
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new', status: :unprocessable_entity
       # debugger
